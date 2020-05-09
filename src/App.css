@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background:#fcfa96;
 }
 
 .App-logo {
@@ -35,4 +36,14 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+@font-face {
+  font-family: 'PollerOne';
+  src: url('./font/CabinSketch-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Cafe';
+  src: url('./font/Cafe24Oneprettynight.ttf');
 }
