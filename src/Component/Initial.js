@@ -220,6 +220,24 @@ const Initial = ({history}) => {
     }
 
 
+    const run = video => {
+        video.addEventListener('play', () => {
+        setInterval(async () => {
+            const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
+
+            if(detections[0]){
+                if(detections[0].expressions.happy > 0.5){
+                    if(!camSmile) testPass();
+                } else {
+                    if(camSmile) stopTest();
+                }  
+            }else{
+                if(camSmile) stopTest();
+            }
+        }, 500)
+        });
+    }
+
     useEffect(() => {
         const video = document.getElementById('video');    
     
@@ -237,32 +255,14 @@ const Initial = ({history}) => {
             history.push('/');
         }else{            
             Promise.all([
-                faceapi.nets.tinyFaceDetector.loadFromUri('./models'),
-                faceapi.nets.faceLandmark68Net.loadFromUri('./models'),
-                faceapi.nets.faceRecognitionNet.loadFromUri('./models'),
-                faceapi.nets.faceExpressionNet.loadFromUri('./models')
+                faceapi.nets.tinyFaceDetector.loadFromUri('https://gitcdn.xyz/repo/justadudewhohacks/face-api.js/master/weights/'),
+                faceapi.nets.faceLandmark68Net.loadFromUri('https://gitcdn.xyz/repo/justadudewhohacks/face-api.js/master/weights/'),
+                faceapi.nets.faceRecognitionNet.loadFromUri('https://gitcdn.xyz/repo/justadudewhohacks/face-api.js/master/weights/'),
+                faceapi.nets.faceExpressionNet.loadFromUri('https://gitcdn.xyz/repo/justadudewhohacks/face-api.js/master/weights/')
             ]).then(startVideo);
         }
     }, []);
 
-    const run = video => {
-        video.addEventListener('play', () => {
-        setInterval(async () => {
-            const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
-
-            if(detections[0]){
-                if(detections[0].expressions.happy > 0.5){
-                    if(!camSmile) testPass();
-                } else {
-                    // if(phase == 3) console.log('no smile~~');
-                    if(camSmile) stopTest();
-                }  
-            }else{
-                if(camSmile) stopTest();
-            }
-        }, 500)
-        });
-    }
 
     return (
         <div>

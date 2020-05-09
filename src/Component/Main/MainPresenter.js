@@ -229,7 +229,6 @@ const PetItem = styled.div`
 `;
 // Bottom Part End
 
-
 export default({
     loaded,
     money,
@@ -262,7 +261,8 @@ export default({
     onGood,
     onDead,
     onZombie
-    }) => (
+    }) => {
+        return (
     <FadeIn>
     <Background>
         {
@@ -301,16 +301,14 @@ export default({
                     {
                         arrive ?
                             smiling ? 
-                            // dance 1,2,3 여기에
                                 dance1 ? <MainHero alt="" src={hero_dance1} /> :
                                 dance2 ? <MainHero alt="" src={hero_dance2} /> : 
                                 dance3 ? <MainHero alt="" src={hero_dance3} /> : null                                
                             : 
-                                // 가만히 서있는 장면
                                 hungry ? <MainHero alt="" src={hero_hungry} /> :
                                     dying ? <MainHeroDying alt="" src={hero_die} /> : 
                                     <MainHero src={hero} />
-                        : //여기서부터는 죽었을 때
+                        : 
                             smiling ?
                             <div><img src={nako} style={{marginTop:'50px'}} width={100} height={80} alt="" /></div>
                             :
@@ -405,4 +403,5 @@ export default({
 
     </Background>
     </FadeIn>
-);
+    );
+};

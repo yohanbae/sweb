@@ -38,12 +38,10 @@ const Shop = ({history}) => {
             history.push('/');
         }
 
-        let info;
         if(uid){
             db.collection("smileland").doc(uid).get().then(doc => {
                 let user = doc.data();
                 setTheData(user);
-                // setMoney(user.money);
                 money = user.money;
 
                 let theCat = user.item.find(val => val.name === 'cat');
@@ -89,19 +87,17 @@ const Shop = ({history}) => {
         let data = theData;
         data.item.map(val => {
             if(val.name === itemPicked) val.own = true;
+            return null;
         });
         data.money = money - itemPrice;
         setTheData(data);
 
-        // let tempMoney = money - itemPrice;
-        // setMoney(tempMoney);        
         money = money - itemPrice;
         moneySpend(itemPrice);
 
         db.collection("smileland").doc(uid).update({
             item: data.item,
             money: money
-            // money: tempMoney
         });
 
         if (itemPicked === "cat") setOwnCat(true);
@@ -145,8 +141,8 @@ const Shop = ({history}) => {
             onMain={onMain}
             onOrder={onOrder}
             moneySpend={moneySpend}        
-        />
-    )
+        ></ShopPresenter>
+    );
 
 }
 export default Shop;

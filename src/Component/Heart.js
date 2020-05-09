@@ -151,7 +151,7 @@ const Heart3 = styled(HeartShape)`
 
 const Heart = ({Left, Bottom, Type=1}) => {
     return(
-        <>
+        <div>
         {
         (Type === 1) ?
         <Box style={{ left:`${Left}px`, bottom:`${Bottom}px` }} >
@@ -166,8 +166,8 @@ const Heart = ({Left, Bottom, Type=1}) => {
         <Heart3 />
         </Box>        
         }
-        </>
-    )
+        </div>
+    );
 
 }
 

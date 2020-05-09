@@ -53,6 +53,96 @@ const Main = ({history}) => {
     // Firebase DB
     const db = firebase.firestore();
 
+    // When User status = dead
+    const saveDeadMoney = id => db.collection("smileland").doc(id).update({ money: -5000 });
+
+    // when User status = zombie | lose all items
+    const saveZombie = id => {
+        db.collection("smileland").doc(id).update({
+            item: [
+                {name:'cat', own:false},
+                {name:'dog', own:false},
+                {name:'ori', own:false},
+                {name:'monkey', own:false},
+                {name:'baby', own:false}
+            ],
+            money: -5000
+        });
+    }
+
+    const startSmile = () => {
+        camSmile = true;
+        console.log("start function");
+        clearInterval(msgTimer);
+        setSmiling(true);
+
+        let rand = Math.floor(Math.random() * 3) + 1;  // generate random numbers 1-3
+        if(rand === 1) {
+            setDance1(true);
+        }else if(rand === 2){
+            setDance2(true);
+        }else if(rand === 3){
+            setDance3(true);
+        }
+
+        // let mon = money;
+        let i = 0;
+
+        arrive ? setMsgOneText(`쿵~ 쿵~`) : setMsgOneText('부활이 진행중입니다. $0이 될때까지 웃어주세요');
+        
+        timer = setInterval(() => {            
+            money += 100;
+
+            if(arrive){
+                if(i === 0){
+                    i = 1;
+                    setMsgOneText(`짝! 짝~!`);
+                }else{
+                    i = 0;
+                    setMsgOneText(`쿵~ 쿵~`);  
+                }
+            }
+        }, 1000);
+    }
+
+    const stopSmile = () => {
+        camSmile = false;
+        clearInterval(timer);
+        
+        setSmiling(false);
+        setDance1(false);
+        setDance2(false);
+        setDance3(false);
+
+        if(!arrive) {
+            if(money >= 0) {
+                onGood();
+                generateMsgOne('again');
+                db.collection("smileland").doc(uid).update({
+                    money: money,
+                    today: new Date()
+                });       
+                toast.success(`부활했습니다`, {hideProgressBar: true});  
+            }else{
+                if(zombie){
+                    generateMsgOne('zombie');
+                }else if(!arrive){
+                    generateMsgOne('dead');
+                }
+            }
+        }else{
+            console.log('no twice', uid);
+            db.collection("smileland").doc(uid).update({
+                money: money,
+                today: new Date()
+            });            
+            onGood();
+            generateMsgOne('good');
+        }
+    }
+
+
+
     useEffect(() => {
         // Check if User has saved data / User very first time
         if(localStorage.getItem('smileweb')){
@@ -161,7 +251,6 @@ const Main = ({history}) => {
                             if(camSmile) stopSmile();
                         }
 
-                        // Control Status // 여기서 완전히 캠이 대기가 되었을 때 load해준다.
                         if(!loaded) setLoaded(true);
                     }, 500)
                     });
@@ -170,10 +259,14 @@ const Main = ({history}) => {
 
                 // Trigger Video when Firebase Data Ready
                 Promise.all([
-                    faceapi.nets.tinyFaceDetector.loadFromUri('./models'),
-                    faceapi.nets.faceLandmark68Net.loadFromUri('./models'),
-                    faceapi.nets.faceRecognitionNet.loadFromUri('./models'),
-                    faceapi.nets.faceExpressionNet.loadFromUri('./models')
+                    // faceapi.nets.tinyFaceDetector.loadFromUri('./models'),
+                    // faceapi.nets.faceLandmark68Net.loadFromUri('./models'),
+                    // faceapi.nets.faceRecognitionNet.loadFromUri('./models'),
+                    // faceapi.nets.faceExpressionNet.loadFromUri('./models')
+                    faceapi.nets.tinyFaceDetector.loadFromUri('https://gitcdn.xyz/repo/justadudewhohacks/face-api.js/master/weights/'),
+                    faceapi.nets.faceLandmark68Net.loadFromUri('https://gitcdn.xyz/repo/justadudewhohacks/face-api.js/master/weights/'),
+                    faceapi.nets.faceRecognitionNet.loadFromUri('https://gitcdn.xyz/repo/justadudewhohacks/face-api.js/master/weights/'),
+                    faceapi.nets.faceExpressionNet.loadFromUri('https://gitcdn.xyz/repo/justadudewhohacks/face-api.js/master/weights/')
                 ]).then(startVideo);
         
 
@@ -189,99 +282,9 @@ const Main = ({history}) => {
             console.log('cleaning');
             clearInterval(info);
             uid = null;
-            // video.removeEventListener('play', HTMLElement);
         }
     }, []);
-
-
-    // When User status = dead
-    const saveDeadMoney = id => db.collection("smileland").doc(id).update({ money: -5000 });
-
-    // when User status = zombie | lose all items
-    const saveZombie = id => {
-        db.collection("smileland").doc(id).update({
-            item: [
-                {name:'cat', own:false},
-                {name:'dog', own:false},
-                {name:'ori', own:false},
-                {name:'monkey', own:false},
-                {name:'baby', own:false}
-            ],
-            money: -5000
-        });
-    }
-
-    const startSmile = () => {
-        camSmile = true;
-        console.log("start function");
-        clearInterval(msgTimer);
-        setSmiling(true);
-
-        let rand = Math.floor(Math.random() * 3) + 1;  // generate random numbers 1-3
-        if(rand === 1) {
-            setDance1(true);
-        }else if(rand === 2){
-            setDance2(true);
-        }else if(rand === 3){
-            setDance3(true);
-        }
-
-        // let mon = money;
-        let i = 0;
-
-        arrive ? setMsgOneText(`쿵~ 쿵~`) : setMsgOneText('부활이 진행중입니다. $0이 될때까지 웃어주세요');
-        
-        timer = setInterval(() => {            
-            // mon += 100;
-            money += 100;
-
-            if(arrive){
-                if(i === 0){
-                    i = 1;
-                    setMsgOneText(`짝! 짝~!`);
-                }else{
-                    i = 0;
-                    setMsgOneText(`쿵~ 쿵~`);  
-                }
-            }
-        }, 1000);
-    }
-
-    const stopSmile = () => {
-        camSmile = false;
-        clearInterval(timer);
-        
-        setSmiling(false);
-        setDance1(false);
-        setDance2(false);
-        setDance3(false);
-
-        if(!arrive) {
-            if(money >= 0) {
-                onGood();
-                generateMsgOne('again');
-                db.collection("smileland").doc(uid).update({
-                    money: money,
-                    today: new Date()
-                });       
-                toast.success(`부활했습니다`, {hideProgressBar: true});  
-            }else{
-                if(zombie){
-                    generateMsgOne('zombie');
-                }else if(!arrive){
-                    generateMsgOne('dead');
-                }
-            }
-        }else{
-            console.log('no twice', uid);
-            db.collection("smileland").doc(uid).update({
-                money: money,
-                today: new Date()
-            });            
-            onGood();
-            generateMsgOne('good');
-        }
-    }
+    
 
     // UNNECESSARY FUNCTION : REMOVE THIS FUNCTION FOR FINAL VERSION
     const moneySpend = total => {
@@ -418,7 +421,7 @@ const Main = ({history}) => {
 
 
     return (
-        <>
+        <div>
         <MainPresenter 
             loaded={loaded}
             money={money}
@@ -451,10 +454,10 @@ const Main = ({history}) => {
             onGood={onGood}
             onDead={onDead}
             onZombie={onZombie}
-        />
+        ></MainPresenter>
         <MyVideo id="video" width="10" height="10" autoPlay muted></MyVideo>
-        </>
-    )
+        </div>
+    );
 }
 
 export default Main;

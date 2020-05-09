@@ -12,14 +12,12 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
-    // <div className="App">
       <Router>
       <Switch>
         <Route exact path="/" component={Main} />        
         <Route exact path="/shop" component={Shop} />
         <Route exact path="/about" component={About} />
         <Route exact path="/initial" component={Initial} />
-        {/* <Smile /> */}
 
       </Switch>
       <ToastContainer transition={Slide} position={toast.POSITION.BOTTOM_LEFT} />

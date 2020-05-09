@@ -15,6 +15,6 @@ const Loading = () => {
         <Wrap>
             <img alt="loading" src={dang} height={100} width={100} />
         </Wrap>
-    )
+    );
 }
 export default Loading;

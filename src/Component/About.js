@@ -201,7 +201,7 @@ const About = ({history}) => {
             </Bottom>
 
         </Background>
-    )
+    );
 
 }
 export default About;

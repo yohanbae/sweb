@@ -276,7 +276,7 @@ const OrderButton = styled.div`
     color:#d37846;
     padding:5px;
     cursor:pointer;
-    
+
     @media only screen and (max-width: 500px) {
         padding:5px; font-size:12px;
     }   
@@ -305,8 +305,8 @@ export default({
     onMain,
     onOrder,
     moneySpend
-    }) => (
-
+    }) => {
+        return (
     <Background>
             
     { loaded ?
@@ -420,3 +420,4 @@ export default({
 
     </Background>
 );
+}
