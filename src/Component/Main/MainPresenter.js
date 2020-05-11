@@ -260,7 +260,9 @@ export default({
     onDying,
     onGood,
     onDead,
-    onZombie
+    onZombie,
+    onReset,
+    onDasu
     }) => {
         return (
     <FadeIn>
@@ -394,6 +396,8 @@ export default({
                 <button onClick={()=>onDead()}>Dead</button>
                 <button onClick={()=>onZombie()}>Zombie</button>
                 <hr />
+                <button onClick={()=>onReset()}>Reset Smile DB</button>
+                <button onClick={()=>onDasu()}>Reset SoDaSu</button>
                 change dates
                 
             </ControlBox>

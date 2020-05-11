@@ -419,6 +419,13 @@ const Main = ({history}) => {
         db.collection("smileland").doc(uid).update({ today: date });
     }
 
+    const onReset = () => {
+        localStorage.removeItem("smileweb");
+    }
+    const onDasu = () => {
+        localStorage.removeItem("sosudasu");
+    }
+
 
     return (
         <div>
@@ -454,6 +461,8 @@ const Main = ({history}) => {
             onGood={onGood}
             onDead={onDead}
             onZombie={onZombie}
+            onReset={onReset}
+            onDasu={onDasu}
         ></MainPresenter>
         <MyVideo id="video" width="10" height="10" autoPlay muted></MyVideo>
         </div>
