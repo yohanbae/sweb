@@ -284,7 +284,7 @@ export default({
                 <UpperContentWrap>
                     <Title>Smile Land</Title>
                     <MsgOne><div style={{opacity:`${msgFade}`, transition:'500ms'}}>{msgOneText}</div></MsgOne>
-                    <MsgTwo>화면을 향해 미소지어주세요</MsgTwo>
+                    <MsgTwo>Smile at the camera</MsgTwo>
                 </UpperContentWrap>
             </Upper>
 
@@ -384,23 +384,6 @@ export default({
                 </HeroBox>
             </Bottom>
 
-            <ControlBox>
-                <button onClick={() => startSmile()}>Start Smile</button>
-                <button onClick={() => stopSmile()}>Stop Smile</button>
-                <button onClick={() => moneySpend(500)}>Money Spend $500</button>
-                <button onClick={() => moneySpend(1500)}>Money Spend $1500</button>
-                <hr />
-                <button onClick={()=>onHungry()}>Hungry</button>
-                <button onClick={()=>onDying()}>Dying</button>
-                <button onClick={()=>onGood()}>Good</button>
-                <button onClick={()=>onDead()}>Dead</button>
-                <button onClick={()=>onZombie()}>Zombie</button>
-                <hr />
-                <button onClick={()=>onReset()}>Reset Smile DB</button>
-                <button onClick={()=>onDasu()}>Reset SoDaSu</button>
-                change dates
-                
-            </ControlBox>
             </>
             : <Loading />
         }

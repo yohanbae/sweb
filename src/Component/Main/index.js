@@ -189,9 +189,9 @@ const Main = ({history}) => {
                     // If still today, do nothing
                 }else{
                     if(leftMoney <= 0){
-                        toast.error(`전 재산을 탕진했습니다`, {hideProgressBar: true});                    
+                        toast.error(`No more money left`, {hideProgressBar: true});                    
                     }else{
-                        toast.success(`지난 ${lastDate}일 동안 $${pastSpend} 식비를 지출했습니다`, {hideProgressBar: true});
+                        toast.success(`지난 ${lastDate}Spent about $${pastSpend} last`, {hideProgressBar: true});
                     }
                 }
 
@@ -302,12 +302,12 @@ const Main = ({history}) => {
         let msg=[];
         if(status === 'good'){
             msg = [
-                "하루 식비가 30,000원이 필요합니다",
-                "행복합니다",
-                "꾸준히 접속해서 아이를 향해 웃어주세요",
-                "웹 카메라를 향해 웃는 만큼 돈이 늘어납니다",
-                "상단 버튼을 통해 상점을 들어갈 수 있습니다",
-                "상점에서 동물친구들을 구매할 수 있습니다"
+                "He needs $30,000 everyday",
+                "He is happy now",
+                "Smile at him often!",
+                "You will get money as much as you smile",
+                "Try to enter item shop",
+                "You can purchase pets at the shop"
             ];
         }
 

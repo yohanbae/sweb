@@ -317,10 +317,10 @@ export default({
         <BackgroundDark onClick={()=>displayOrderClose()}></BackgroundDark>
         <OrderWrap>
             <OrderContents>
-                <OrderAsk>이 아이템을 구매하시겠습니까?</OrderAsk>
+                <OrderAsk>Purchase this item?</OrderAsk>
                 <div></div>
-                <OrderButton onClick={() => placeOrder()} >구매하기</OrderButton>
-                <OrderButton onClick={() => displayOrderClose()}>취소하기</OrderButton>
+                <OrderButton onClick={() => placeOrder()} >Purchase</OrderButton>
+                <OrderButton onClick={() => displayOrderClose()}>Cancel</OrderButton>
             </OrderContents>
         </OrderWrap>
         </>
@@ -333,7 +333,7 @@ export default({
         <>
         <BackgroundDark onClick={()=>displayNoMoneyClose()}></BackgroundDark>
         <OrderWrap>
-            <OrderAsk>재정이 부족합니다</OrderAsk>
+            <OrderAsk>Not enough money</OrderAsk>
         </OrderWrap>
         </>
         :
@@ -352,8 +352,8 @@ export default({
     <Upper>
         <UpperContentWrap>
             <Title onClick={()=> onMain()}>Smile Land</Title>
-            <MsgOne>아이템 상점</MsgOne>
-            <MsgTwo>원하시는 품목을 구매해주세요</MsgTwo>
+            <MsgOne>Item Shop</MsgOne>
+            <MsgTwo>Order your favorite item</MsgTwo>
         </UpperContentWrap>
     </Upper>
 
@@ -363,58 +363,54 @@ export default({
                 <ItemImage src={ori} sold={ownOri} />
             </SepWrap>
             <SepWrap>
-                <H5>어린 오리</H5>
+                <H5>Baby Duck</H5>
                 <H5>$10,000</H5>
             </SepWrap>
-            <ItemOrder onClick={()=> onOrder("ori", 10000)} disabled={ownOri} sold={ownOri}>구매하기</ItemOrder>
+            <ItemOrder onClick={()=> onOrder("ori", 10000)} disabled={ownOri} sold={ownOri}>Order</ItemOrder>
         </ItemBox>
         <ItemBox>
             <SepWrap>
                 <ItemImage src={cat} sold={ownCat} />
             </SepWrap>
             <SepWrap>
-                <H5>어린 야옹이</H5>
+                <H5>Baby Kat</H5>
                 <H5>$500</H5>
             </SepWrap>
-            <ItemOrder onClick={()=> onOrder("cat", 500)} disabled={ownCat} sold={ownCat}>구매하기</ItemOrder>
+            <ItemOrder onClick={()=> onOrder("cat", 500)} disabled={ownCat} sold={ownCat}>Order</ItemOrder>
         </ItemBox>             
         <ItemBox>
             <SepWrap>
                 <ItemImage src={dang} sold={ownDog} />
             </SepWrap>
             <SepWrap>
-                <H5>강아지</H5>
+                <H5>Puppy</H5>
                 <H5>$7,000</H5>
             </SepWrap>
-            <ItemOrder onClick={()=> onOrder("dog", 7000)} disabled={ownDog} sold={ownDog}>구매하기</ItemOrder>
+            <ItemOrder onClick={()=> onOrder("dog", 7000)} disabled={ownDog} sold={ownDog}>Order</ItemOrder>
         </ItemBox>
         <ItemBox>
             <SepWrap>
                 <ItemImage src={baby} sold={ownBaby} />
             </SepWrap>
             <SepWrap>
-                <H5>알깬 아기</H5>
+                <H5>Baby</H5>
                 <H5>$1,000</H5>
             </SepWrap>
-            <ItemOrder onClick={()=> onOrder("baby", 1000)} disabled={ownBaby} sold={ownBaby}>구매하기</ItemOrder>
+            <ItemOrder onClick={()=> onOrder("baby", 1000)} disabled={ownBaby} sold={ownBaby}>Order</ItemOrder>
         </ItemBox>     
         <ItemBox>
             <SepWrap>
                 <ItemImage src={buritto} sold={ownMonkey}/>
             </SepWrap>
             <SepWrap>
-                <H5>부리또 보이</H5>
+                <H5>buritto Boy</H5>
                 <H5>$20,000</H5>
             </SepWrap>
-            <ItemOrder onClick={()=> onOrder("monkey", 20000)} disabled={ownMonkey} sold={ownMonkey}>구매하기</ItemOrder>
+            <ItemOrder onClick={()=> onOrder("monkey", 20000)} disabled={ownMonkey} sold={ownMonkey}>Order</ItemOrder>
         </ItemBox>
 
     </Bottom>
 
-    <ControlBox>
-        <button onClick={() => moneySpend(500)}>Money Spend $500</button>
-        <button onClick={() => moneySpend(1500)}>Money Spend $1500</button>
-    </ControlBox>
     </>
     : <Loading /> }
 

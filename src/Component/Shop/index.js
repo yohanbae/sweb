@@ -106,7 +106,7 @@ const Shop = ({history}) => {
         if (itemPicked === "baby") setOwnBaby(true);
         if (itemPicked === "ori") setOwnOri(true);
 
-        toast.success(`구입 완료`, {hideProgressBar: true});  
+        toast.success(`Item purchased`, {hideProgressBar: true});  
 
         // After all process done
         displayOrderClose();

@@ -3,9 +3,10 @@ import styled, {keyframes} from "styled-components";
 import FadeIn from 'react-fade-in';
 import ori from "../image/ori.png";
 import ori_ani from "../image/ori_ani.gif";
-import child from "../image/tokki.png";
+import child from "../image/hero_reg.gif";
 import firebase from "../base";
 import * as faceapi from 'face-api.js';
+import Loading from "./Loading";
 
 const TheWrap = styled.div`
     width:100vw; height:100vh;
@@ -288,47 +289,46 @@ const Initial = ({history}) => {
                     
 
                     { (phase === 1) ? <FadeIn>
-                        <Pan>스마일랜드에 오신 것을 환영합니다. 컴퓨터 카메라 사용을 허용해주세요.</Pan>                    
+                        <Pan>Welcome to Smileland. Please give us permission to your camera.</Pan>                    
                     </FadeIn> : null }
-                    { (phase === 2) ? <FadeIn><Pan>스마일랜드는 여러분의 '미소'로 운영되는 곳입니다</Pan></FadeIn> : null }
+                    { (phase === 2) ? <FadeIn><Pan>Your smile will give us power in Smileland.</Pan></FadeIn> : null }
                     { (phase === 3) ? <FadeIn>
-                        <Pan>카메라를 테스트 해보겠습니다. 지금 화면을 향해 활짝 웃어주세요.</Pan>
+                        <Pan>Let me test your camera. Please smile at the camera on your computer.</Pan>
                         <TestCamWrap>
                             <TestCam>
                                 <TestBar style={{width:`${testTime}%`}}></TestBar>
                             </TestCam>
                         </TestCamWrap>
-                        <button onClick={()=> testPass()}>Success</button>
                         </FadeIn> : null }
-                    { (phase === 4) ? <FadeIn><Pan>여러분이 '웃은 만큼' 돈이 생겼습니다</Pan></FadeIn> : null }
+                    { (phase === 4) ? <FadeIn><Pan>We earned money as much as you smiled.</Pan></FadeIn> : null }
                     { (phase === 5) ? <FadeIn>
                         <ImgChildWrap>
                             <ImgChild src={child} width={100} height={210} />
                         </ImgChildWrap>
-                        <Pan>여기 우리 어린이가 있습니다</Pan>
+                        <Pan>Alright, we have a boy here.</Pan>
                         </FadeIn> : null }
                     { (phase === 6) ? <FadeIn>
                         <ImgChildWrap>
                             <ImgChild src={child} width={100} height={210} />
                         </ImgChildWrap>
-                        <Pan>우리 어린이는 많이 먹기 때문에 하루에 식비가 $30000이 필요해요</Pan>
+                        <Pan>He needs $30,000 to buy food everyday day.</Pan>
                         </FadeIn> : null }
                     { (phase === 7) ? <FadeIn>
                         <ImgChildWrap>
                             <ImgChild src={child} width={100} height={210} />
                         </ImgChildWrap>
-                        <Pan>우리 어린이가 굶어죽지 않도록 자주 접속하셔서 웃어주세요!</Pan>
+                        <Pan>Please visit here often and smile so the boy can survive!</Pan>
                         </FadeIn> : null }
                     { (phase === 8) ? <><FadeIn>
                         <ImgChildWrap>
                             <ImgChild src={child} width={100} height={210} />
                         </ImgChildWrap>
-                        <InputName placeholder="어린이 이름 만들기" autoFocus />
-                        <StartButton style={{marginTop:'20px'}} onClick={()=> onStart()}>시작하기</StartButton>
+                        <InputName placeholder="what is his name?" autoFocus />
+                        <StartButton style={{marginTop:'20px'}} onClick={()=> onStart()}>start</StartButton>
                         </FadeIn></> : null }
                 </TheWrap>
                 :
-                <div>Loading</div>
+                <Loading />
             }
             <MyVideo id="video" width="10" height="10" autoPlay muted></MyVideo>
         </div>
