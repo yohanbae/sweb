@@ -259,14 +259,14 @@ const Main = ({history}) => {
 
                 // Trigger Video when Firebase Data Ready
                 Promise.all([
-                    // faceapi.nets.tinyFaceDetector.loadFromUri('./models'),
-                    // faceapi.nets.faceLandmark68Net.loadFromUri('./models'),
-                    // faceapi.nets.faceRecognitionNet.loadFromUri('./models'),
-                    // faceapi.nets.faceExpressionNet.loadFromUri('./models')
-                    faceapi.nets.tinyFaceDetector.loadFromUri('https://gitcdn.xyz/repo/justadudewhohacks/face-api.js/master/weights/'),
-                    faceapi.nets.faceLandmark68Net.loadFromUri('https://gitcdn.xyz/repo/justadudewhohacks/face-api.js/master/weights/'),
-                    faceapi.nets.faceRecognitionNet.loadFromUri('https://gitcdn.xyz/repo/justadudewhohacks/face-api.js/master/weights/'),
-                    faceapi.nets.faceExpressionNet.loadFromUri('https://gitcdn.xyz/repo/justadudewhohacks/face-api.js/master/weights/')
+                    faceapi.nets.tinyFaceDetector.loadFromUri('https://sweb-weights.netlify.app/'),
+                    faceapi.nets.faceLandmark68Net.loadFromUri('https://sweb-weights.netlify.app/'),
+                    faceapi.nets.faceRecognitionNet.loadFromUri('https://sweb-weights.netlify.app/'),
+                    faceapi.nets.faceExpressionNet.loadFromUri('https://sweb-weights.netlify.app/')                      
+                    // faceapi.nets.tinyFaceDetector.loadFromUri('https://gitcdn.xyz/repo/justadudewhohacks/face-api.js/master/weights/'),
+                    // faceapi.nets.faceLandmark68Net.loadFromUri('https://gitcdn.xyz/repo/justadudewhohacks/face-api.js/master/weights/'),
+                    // faceapi.nets.faceRecognitionNet.loadFromUri('https://gitcdn.xyz/repo/justadudewhohacks/face-api.js/master/weights/'),
+                    // faceapi.nets.faceExpressionNet.loadFromUri('https://gitcdn.xyz/repo/justadudewhohacks/face-api.js/master/weights/')
                 ]).then(startVideo);
         
 
