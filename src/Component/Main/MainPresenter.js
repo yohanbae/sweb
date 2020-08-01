@@ -284,7 +284,7 @@ export default({
                 <UpperContentWrap>
                     <Title>Smile Land</Title>
                     <MsgOne><div style={{opacity:`${msgFade}`, transition:'500ms'}}>{msgOneText}</div></MsgOne>
-                    <MsgTwo>Smile at the camera</MsgTwo>
+                    <MsgTwo>Smile to the camera</MsgTwo>
                 </UpperContentWrap>
             </Upper>
 

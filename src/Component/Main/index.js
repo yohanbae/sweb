@@ -267,7 +267,11 @@ const Main = ({history}) => {
                     faceapi.nets.faceLandmark68Net.loadFromUri('https://gitcdn.xyz/repo/justadudewhohacks/face-api.js/master/weights/'),
                     faceapi.nets.faceRecognitionNet.loadFromUri('https://gitcdn.xyz/repo/justadudewhohacks/face-api.js/master/weights/'),
                     faceapi.nets.faceExpressionNet.loadFromUri('https://gitcdn.xyz/repo/justadudewhohacks/face-api.js/master/weights/')
-                ]).then(startVideo);
+               
+                ]).then(startVideo)
+                .catch(function(error) {
+                    console.log(error, "Please refresh");
+                });
         
 
             })
