@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import dang from "../image/dang_ani.gif";
+import dang from "../image/cat_hungry.png";
 
 const Wrap = styled.div`
     width:100vw; 
@@ -16,16 +16,25 @@ const Senten = styled.div`
     margin-top:10px;
 `
 
-const Loading = () => {
+const Gogo = styled.span`
+    cursor:pointer;
+    color: blue;
+    margin-left:10px;
+    
+`
+const Try = ({history}) => {
+
     return (
         <Wrap>
             <div>
                 <img alt="loading" src={dang} height={100} width={100} />
-                <Senten>
-                    now loading...
+                <Senten>Issues on server now. Please re-connect to website.
+                    <Gogo onClick={()=>history.goBack()}>Go Back</Gogo>
+
                 </Senten>
             </div>
         </Wrap>
-    );
+    )
 }
-export default Loading;
+
+export default Try

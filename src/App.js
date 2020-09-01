@@ -7,6 +7,8 @@ import Main from "./Component/Main/";
 import Shop from "./Component/Shop/";
 import About from "./Component/About";
 import Initial from "./Component/Initial";
+import Try from "./Component/Try";
+
 import { ToastContainer, toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -18,6 +20,7 @@ function App() {
         <Route exact path="/shop" component={Shop} />
         <Route exact path="/about" component={About} />
         <Route exact path="/initial" component={Initial} />
+        <Route exact path="/try" component={Try} />
 
       </Switch>
       <ToastContainer transition={Slide} position={toast.POSITION.BOTTOM_LEFT} />

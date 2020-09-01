@@ -271,6 +271,7 @@ const Main = ({history}) => {
                 ]).then(startVideo)
                 .catch(function(error) {
                     console.log(error, "Please refresh");
+                    history.push('/try')
                 });
         
 
